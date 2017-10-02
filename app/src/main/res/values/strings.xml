@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Simple remote controller</string>
+
+    <string name="current_temperature_label">Aktualna temperatura:</string>
+    <string name="current_humidity_label">Aktualna wilgotność:</string>
+
+    <string name="celsius_degree">\u2103</string>
 </resources>

@@ -39,7 +39,7 @@ class CurrentWeatherFragment : Fragment() {
         this.tv_current_temperature.text = "15.5 " + getString(R.string.celsius_degree)
         this.tv_current_humidity.text = "53 %"
 
-        var weather = weatherService.weather
+        val weather = weatherService.weather
         weather.enqueue(getCallback())
 
         this.btn_immediately_on_off.setOnClickListener {
@@ -50,9 +50,9 @@ class CurrentWeatherFragment : Fragment() {
     private fun getCallback(): Callback<Weather> {
         return object : Callback<Weather> {
             override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
-                if (response.isSuccessful() && response.body() != null) {
-                    tv_current_temperature.text = response.body()!!.temperature
-                    tv_current_humidity.text = response.body()!!.humidity
+                if (response.isSuccessful && response.body() != null) {
+                    tv_current_temperature.text = response.body()!!.temperature + getString(R.string.celsius_degree)
+                    tv_current_humidity.text = response.body()!!.humidity + "%"
                 }
             }
 

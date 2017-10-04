@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import com.krawczyk.maciej.simpleremotecontroller.R
+import com.krawczyk.maciej.simpleremotecontroller.data.net.WeatherService
 import kotlinx.android.synthetic.main.fragment_immediately_on_off.*
 
 class ImmediatelyOnOffFragment : Fragment() {
 
+    lateinit var weatherService: WeatherService
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

@@ -4,5 +4,9 @@
     <string name="current_temperature_label">Aktualna temperatura:</string>
     <string name="current_humidity_label">Aktualna wilgotność:</string>
 
+    <string name="start_furnace_label">Włącz piec</string>
+    <string name="start_airing_label">Włącz wietrzenie</string>
+
     <string name="celsius_degree">\u2103</string>
+
 </resources>

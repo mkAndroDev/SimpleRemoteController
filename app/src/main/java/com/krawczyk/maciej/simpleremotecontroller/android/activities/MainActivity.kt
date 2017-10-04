@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     fun loadFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.activity_content, fragment)
+        transaction.addToBackStack(fragment.javaClass.simpleName)
         transaction.commitAllowingStateLoss()
     }
 }

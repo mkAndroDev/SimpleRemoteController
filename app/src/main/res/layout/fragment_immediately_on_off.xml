@@ -4,24 +4,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/padding_large"
-    tools:context="com.krawczyk.maciej.simpleremotecontroller.android.fragments.CurrentWeatherFragment">
+    tools:context="com.krawczyk.maciej.simpleremotecontroller.android.fragments.ImmediatelyOnOffFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/current_temperature_label" />
+            android:text="@string/start_furnace_label" />
 
-        <TextView
-            android:id="@+id/tv_current_temperature"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:gravity="start">
+
+            <Switch
+                android:id="@+id/switch_start_furnace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -29,35 +37,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/current_humidity_label" />
+            android:text="@string/start_airing_label" />
 
-        <TextView
-            android:id="@+id/tv_current_humidity"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:gravity="start">
+
+            <Switch
+                android:id="@+id/switch_start_airing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_immediately_on_off"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_large"
-        android:text="Włącznik natchmiastowy"
-        android:textAllCaps="false" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_large"
-        android:text="Włącznik nastawny"
-        android:textAllCaps="false" />
 
 </LinearLayout>

@@ -50,14 +50,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
-        android:text="Włącznik natchmiastowy"
+        android:text="@string/switch_instant"
         android:textAllCaps="false" />
 
     <Button
+        android:id="@+id/btn_adjustable_on_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
-        android:text="Włącznik nastawny"
+        android:text="@string/switch_adjustable"
         android:textAllCaps="false" />
 
 </LinearLayout>

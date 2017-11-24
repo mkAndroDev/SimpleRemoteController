@@ -1,7 +1,6 @@
 package com.krawczyk.maciej.simpleremotecontroller.android.fragments
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +8,12 @@ import android.view.ViewGroup
 import com.krawczyk.maciej.simpleremotecontroller.R
 import com.krawczyk.maciej.simpleremotecontroller.android.activities.MainActivity
 import com.krawczyk.maciej.simpleremotecontroller.data.model.Weather
-import com.krawczyk.maciej.simpleremotecontroller.data.net.RestClient
-import com.krawczyk.maciej.simpleremotecontroller.data.net.WeatherService
 import kotlinx.android.synthetic.main.fragment_current_weather.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CurrentWeatherFragment : Fragment() {
-
-    lateinit var weatherService: WeatherService
+class CurrentWeatherFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -28,8 +23,6 @@ class CurrentWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        weatherService = RestClient.getWeatherService()
 
         setupViews()
     }
@@ -44,6 +37,10 @@ class CurrentWeatherFragment : Fragment() {
 
         this.btn_immediately_on_off.setOnClickListener {
             (activity as MainActivity).loadFragment(ImmediatelyOnOffFragment.newInstance())
+        }
+
+        this.btn_adjustable_on_off.setOnClickListener {
+            (activity as MainActivity).loadFragment(AdjustableOnOffFragment.newInstance())
         }
     }
 

@@ -3,7 +3,7 @@
 
     <string name="current_temperature_label">Aktualna temperatura:</string>
     <string name="current_humidity_label">Aktualna wilgotność:</string>
-    
+
     <string name="switch_instant">Włącznik natychmiastowy</string>
     <string name="switch_adjustable">Włącznik nastawny</string>
 
@@ -12,7 +12,13 @@
 
     <string name="start_furnace_when_label">Włącz piec gdy:</string>
     <string name="start_airing_when_label">Włącz wietrzenie gdy:</string>
+    <string name="set_weather_label">Set weather</string>
 
     <string name="celsius_degree">\u2103</string>
+
+    <string name="settings_title">Settings</string>
+
+    <string name="set_url_label">Podaj URL:</string>
+    <string name="set_url_button_label">Zapisz URL</string>
 
 </resources>

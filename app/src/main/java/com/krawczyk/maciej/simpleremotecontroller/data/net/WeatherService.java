@@ -3,6 +3,7 @@ package com.krawczyk.maciej.simpleremotecontroller.data.net;
 import com.krawczyk.maciej.simpleremotecontroller.data.model.Weather;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
 
@@ -12,18 +13,24 @@ import retrofit2.http.PUT;
 
 public interface WeatherService {
 
-    @GET("/getWeather")
+    @GET("/getCurrentWeather")
     Call<Weather> getWeather();
 
-    @PUT("/furnaceOnNow")
-    Call<Weather> putFurnaceOnNow();
+    @GET("/getSetWeather")
+    Call<Weather> getSetWeather();
 
-    @PUT("/furnaceOffNow")
-    Call<Weather> putFurnaceOffNow();
+    @PUT("/setTemperatureAndAiring")
+    Call<Weather> setTemperatureAndAiring(@Body Weather weather);
 
-    @PUT("/airingOnNow")
-    Call<Weather> putAiringOnNow();
+    @GET("/getFurnace")
+    Call<Boolean> getFurnaceOnOff();
 
-    @PUT("/airingOffNow")
-    Call<Weather> putAiringOffNow();
+    @PUT("/putFurnace")
+    Call<Boolean> putFurnaceOnOff();
+
+    @GET("/getAiring")
+    Call<Boolean> getAiringOnOff();
+
+    @PUT("/putAiring")
+    Call<Boolean> putAiringOffNow();
 }

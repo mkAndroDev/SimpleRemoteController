@@ -13,20 +13,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RestClient {
 
-    private static WeatherService weatherService;
-
-    static {
-        setupRestClient();
-    }
-
     private RestClient() {
     }
 
     public static WeatherService getWeatherService() {
-        return weatherService;
+        return setupRestClient(ConfigEndpoints.getBaseUrl());
     }
 
-    private static void setupRestClient() {
+    private static WeatherService setupRestClient(String url) {
 
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
@@ -42,12 +36,11 @@ public class RestClient {
         okHttpClient.interceptors().add(loggingInterceptor);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ConfigEndpoints.BASE_URL)
+                .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient.build())
                 .build();
 
-        weatherService = retrofit.create(WeatherService.class);
-
+        return retrofit.create(WeatherService.class);
     }
 }

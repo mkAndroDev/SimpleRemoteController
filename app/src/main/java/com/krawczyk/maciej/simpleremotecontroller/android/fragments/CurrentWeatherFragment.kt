@@ -27,13 +27,10 @@ class CurrentWeatherFragment : BaseFragment() {
         setupViews()
     }
 
-    fun setupViews() {
+    private fun setupViews() {
 
-        this.tv_current_temperature.text = "15.5 " + getString(R.string.celsius_degree)
-        this.tv_current_humidity.text = "53 %"
-
-        val weather = weatherService.weather
-        weather.enqueue(getCallback())
+        val weatherService = weatherService.weather
+        weatherService.enqueue(getCallback())
 
         this.btn_immediately_on_off.setOnClickListener {
             (activity as MainActivity).loadFragment(ImmediatelyOnOffFragment.newInstance())
@@ -48,13 +45,20 @@ class CurrentWeatherFragment : BaseFragment() {
         return object : Callback<Weather> {
             override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
                 if (response.isSuccessful && response.body() != null) {
-                    tv_current_temperature.text = response.body()!!.temperature + getString(R.string.celsius_degree)
-                    tv_current_humidity.text = response.body()!!.humidity + "%"
+                    tv_current_temperature.text = response.body()!!.temperature.toString() + getString(R.string.celsius_degree)
+                    tv_current_humidity.text = response.body()!!.humidity.toString() + "%"
                 }
             }
 
             override fun onFailure(call: Call<Weather>, t: Throwable) {
                 Log.d("Weather Response: ", t.message)
+
+                val weather = Weather()
+                weather.temperature = 23.3
+                weather.humidity = 73.1
+
+                tv_current_temperature.text = weather.temperature.toString() + getString(R.string.celsius_degree)
+                tv_current_humidity.text = weather.humidity.toString() + "%"
             }
         }
     }

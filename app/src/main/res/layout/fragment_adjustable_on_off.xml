@@ -1,10 +1,11 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/padding_large">
 
     <LinearLayout
+        android:id="@+id/ll_furnace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -17,7 +18,7 @@
             android:text="@string/start_furnace_when_label" />
 
         <EditText
-            android:id="@+id/tv_furnace_when"
+            android:id="@+id/et_furnace_when"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -26,8 +27,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_airing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/ll_furnace"
         android:layout_marginTop="@dimen/margin_large"
         android:gravity="center"
         android:orientation="horizontal">
@@ -39,7 +42,7 @@
             android:text="@string/start_airing_when_label" />
 
         <EditText
-            android:id="@+id/tv_airing_when"
+            android:id="@+id/et_airing_when"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -48,4 +51,12 @@
     </LinearLayout>
 
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btn_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/set_weather_label" />
+
+</RelativeLayout>

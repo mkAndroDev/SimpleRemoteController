@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.krawczyk.maciej.simpleremotecontroller.R
 import com.krawczyk.maciej.simpleremotecontroller.android.activities.MainActivity
-import com.krawczyk.maciej.simpleremotecontroller.data.model.Weather
+import com.krawczyk.maciej.simpleremotecontroller.data.model.WeatherModel
 import kotlinx.android.synthetic.main.fragment_current_weather.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,24 +41,17 @@ class CurrentWeatherFragment : BaseFragment() {
         }
     }
 
-    private fun getCallback(): Callback<Weather> {
-        return object : Callback<Weather> {
-            override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
+    private fun getCallback(): Callback<WeatherModel> {
+        return object : Callback<WeatherModel> {
+            override fun onResponse(call: Call<WeatherModel>, response: Response<WeatherModel>) {
                 if (response.isSuccessful && response.body() != null) {
                     tv_current_temperature.text = response.body()!!.temperature.toString() + getString(R.string.celsius_degree)
                     tv_current_humidity.text = response.body()!!.humidity.toString() + "%"
                 }
             }
 
-            override fun onFailure(call: Call<Weather>, t: Throwable) {
-                Log.d("Weather Response: ", t.message)
-
-                val weather = Weather()
-                weather.temperature = 23.3
-                weather.humidity = 73.1
-
-                tv_current_temperature.text = weather.temperature.toString() + getString(R.string.celsius_degree)
-                tv_current_humidity.text = weather.humidity.toString() + "%"
+            override fun onFailure(call: Call<WeatherModel>, t: Throwable) {
+                Log.d("WeatherModel Response: ", t.message)
             }
         }
     }

@@ -5,10 +5,8 @@ import com.google.gson.annotations.Expose
 /**
  * Created by maciek on 03.10.17.
  */
-class Weather {
+class FurnaceModel {
 
     @Expose
-    var temperature: Double = 0.0
-    @Expose
-    var humidity: Double = 0.0
+    var furnace: Int = 0
 }

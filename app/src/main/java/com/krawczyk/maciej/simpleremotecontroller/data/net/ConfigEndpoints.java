@@ -2,8 +2,8 @@ package com.krawczyk.maciej.simpleremotecontroller.data.net;
 
 public class ConfigEndpoints {
 
-    static String BASE_URL = "http://maciej.krawczyk.com";
-    String HEADER_ACCEPT_TYPE = "application/json";
+    static String BASE_URL = "http://192.168.0.107";
+    static String HEADER_ACCEPT_TYPE = "application/json";
 
     public static String getBaseUrl() {
         return BASE_URL;

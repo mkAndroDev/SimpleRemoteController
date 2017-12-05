@@ -1,6 +1,8 @@
 package com.krawczyk.maciej.simpleremotecontroller.data.net;
 
-import com.krawczyk.maciej.simpleremotecontroller.data.model.Weather;
+import com.krawczyk.maciej.simpleremotecontroller.data.model.AiringModel;
+import com.krawczyk.maciej.simpleremotecontroller.data.model.FurnaceModel;
+import com.krawczyk.maciej.simpleremotecontroller.data.model.WeatherModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -14,23 +16,23 @@ import retrofit2.http.PUT;
 public interface WeatherService {
 
     @GET("/getCurrentWeather")
-    Call<Weather> getWeather();
+    Call<WeatherModel> getWeather();
 
-    @GET("/getSetWeather")
-    Call<Weather> getSetWeather();
+    @GET("/getCurrentSet")
+    Call<WeatherModel> getSetWeather();
 
-    @PUT("/setTemperatureAndAiring")
-    Call<Weather> setTemperatureAndAiring(@Body Weather weather);
+    @PUT("/putCurrentSet")
+    Call<WeatherModel> setTemperatureAndAiring(@Body WeatherModel weather);
 
     @GET("/getFurnace")
-    Call<Boolean> getFurnaceOnOff();
+    Call<FurnaceModel> getFurnaceOnOff();
 
     @PUT("/putFurnace")
-    Call<Boolean> putFurnaceOnOff();
+    Call<FurnaceModel> putFurnaceOnOff();
 
     @GET("/getAiring")
-    Call<Boolean> getAiringOnOff();
+    Call<AiringModel> getAiringOnOff();
 
     @PUT("/putAiring")
-    Call<Boolean> putAiringOffNow();
+    Call<AiringModel> putAiringOffNow();
 }

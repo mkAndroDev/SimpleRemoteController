@@ -22,6 +22,27 @@ boolean autoMode = false;
 boolean airing = false;
 boolean furnace = false;
 
+String getTemperature(String data, int index)
+{
+  String retVal = "";
+  int currentfound = 0;
+
+  for (int i = 0; i <= data.length() - 1; i++) {
+    if (data.charAt(i) == ':') {
+      if (currentfound == index) {
+        for (int j = 1; j <= 6; j++) {
+          if (isDigit(data.charAt(i + j)) || data.charAt(i + j) == '.') {
+            retVal += data.charAt(i + j);
+          }
+        }
+        return retVal;
+      } else {
+        currentfound++;
+      }
+    }
+  }
+}
+
 void handleRoot() {
   server.send(200, "text/plain", "hello from esp8266!");
 }
@@ -44,19 +65,22 @@ void handleNotFound() {
 void handlePutCurrentSet() {
 
   if (server.hasArg("plain") == false) {
-
     server.send(200, "text/plain", "Body not received");
     return;
-
   }
 
   autoMode = true;
 
-  String message = "Body received:\n";
-  message += server.arg("plain");
-  message += "\n";
+  String message = server.arg("plain");
 
-  server.send(200, "text/plain", message + " autoMode: " + String(autoMode));
+  String humidity = getTemperature(message, 0);
+  String temperature = getTemperature(message, 1);
+
+  temperatureToLaunch = temperature.toFloat();
+  humidityToLaunch = humidity.toFloat();
+
+  server.send(200, "application/json", "{temperature: " + temperature + ", humidity: " + humidity + "}");
+
 }
 
 void setup(void) {
@@ -87,17 +111,17 @@ void setup(void) {
   server.on("/getCurrentWeather", []() {
     float currentHumidity = dht.readHumidity();
     float currentTemperature = dht.readTemperature();
-    server.send(200, "text/plain", "{temperature: " + String(currentTemperature) + ", humidity: " + String(currentHumidity) + "}");
+    server.send(200, "application/json", "{temperature: " + String(currentTemperature) + ", humidity: " + String(currentHumidity) + "}");
   });
 
   server.on("/putCurrentSet", handlePutCurrentSet);
 
   server.on("/getCurrentSet", []() {
-    server.send(200, "text/plain", "{temperature: " + String(temperatureToLaunch) + ", humidity: " + String(humidityToLaunch) + "}");
+    server.send(200, "application/json", "{temperature: " + String(temperatureToLaunch) + ", humidity: " + String(humidityToLaunch) + "}");
   });
 
   server.on("/getAiring", []() {
-    server.send(200, "text/plain", "{furnace: " + String(airing) + "}" );
+    server.send(200, "application/json", "{airing: " + String(airing) + "}" );
   });
 
   server.on("/putAiring", []() {
@@ -110,11 +134,11 @@ void setup(void) {
       digitalWrite(AIRING_PIN, LOW);
     }
 
-    server.send(200, "text/plain", "{furnace: " + String(airing) + "}");
+    server.send(200, "application/json", "{airing: " + String(airing) + "}");
   });
 
   server.on("/getFurnace", []() {
-    server.send(200, "text/plain", "{furnace: " + String(furnace) + "}" );
+    server.send(200, "application/json", "{furnace: " + String(furnace) + "}" );
   });
 
   server.on("/putFurnace", []() {
@@ -127,7 +151,7 @@ void setup(void) {
       digitalWrite(FURNACE_PIN, LOW);
     }
 
-    server.send(200, "text/plain", "{furnace: " + String(furnace) + "}");
+    server.send(200, "application/json", "{furnace: " + String(furnace) + "}");
   });
 
   server.onNotFound(handleNotFound);

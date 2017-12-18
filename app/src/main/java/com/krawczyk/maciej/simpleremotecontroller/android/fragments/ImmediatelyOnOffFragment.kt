@@ -27,7 +27,7 @@ class ImmediatelyOnOffFragment : BaseFragment() {
         setupViews()
     }
 
-    fun setupViews() {
+    private fun setupViews() {
 
         val airingOnOff = weatherService.airingOnOff
         airingOnOff.enqueue(getAiringCallback())
@@ -45,7 +45,7 @@ class ImmediatelyOnOffFragment : BaseFragment() {
             override fun onResponse(call: Call<AiringModel>, response: Response<AiringModel>) {
                 if (response.isSuccessful && response.body() != null) {
                     setupAiringChangeListener(true)
-                    switch_start_airing.isChecked = response.body()?.airing == 1
+                    switch_start_airing.isChecked = response.body()?.isLaunched == 1
                     setupAiringChangeListener(false)
                 }
             }
@@ -67,7 +67,7 @@ class ImmediatelyOnOffFragment : BaseFragment() {
             override fun onResponse(call: Call<FurnaceModel>, response: Response<FurnaceModel>) {
                 if (response.isSuccessful && response.body() != null) {
                     setupFurnaceChangeListener(true)
-                    switch_start_furnace.isChecked = response.body()?.furnace == 1
+                    switch_start_furnace.isChecked = response.body()?.isLaunched == 1
                     setupFurnaceChangeListener(false)
                 }
             }
@@ -88,7 +88,7 @@ class ImmediatelyOnOffFragment : BaseFragment() {
         if (listenerNull) {
             switch_start_airing.setOnCheckedChangeListener(null)
         } else {
-            this.switch_start_airing.setOnCheckedChangeListener { switch, isChecked ->
+            this.switch_start_airing.setOnCheckedChangeListener { _, isChecked ->
                 val putAiringOnOff = weatherService.putAiringOffNow()
                 putAiringOnOff.enqueue(getAiringCallback())
             }
@@ -99,7 +99,7 @@ class ImmediatelyOnOffFragment : BaseFragment() {
         if (listenerNull) {
             switch_start_furnace.setOnCheckedChangeListener(null)
         } else {
-            switch_start_furnace.setOnCheckedChangeListener { switch, isChecked ->
+            switch_start_furnace.setOnCheckedChangeListener { _, isChecked ->
                 val putFurnaceOnOff = weatherService.putFurnaceOnOff()
                 putFurnaceOnOff.enqueue(getFurnaceCallback())
             }

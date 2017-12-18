@@ -24,13 +24,13 @@ public interface WeatherService {
     @PUT("/putCurrentSet")
     Call<WeatherModel> setTemperatureAndAiring(@Body WeatherModel weather);
 
-    @GET("/getFurnace")
+    @GET("/isLaunched")
     Call<FurnaceModel> getFurnaceOnOff();
 
     @PUT("/putFurnace")
     Call<FurnaceModel> putFurnaceOnOff();
 
-    @GET("/getAiring")
+    @GET("/isLaunched")
     Call<AiringModel> getAiringOnOff();
 
     @PUT("/putAiring")

@@ -6,9 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.krawczyk.maciej.simpleremotecontroller.R
+import com.krawczyk.maciej.simpleremotecontroller.data.model.Weather
 import com.krawczyk.maciej.simpleremotecontroller.data.model.WeatherModel
+import com.krawczyk.maciej.simpleremotecontroller.domain.mappers.WeatherMapper
 import kotlinx.android.synthetic.main.fragment_adjustable_on_off.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,7 +17,7 @@ import retrofit2.Response
 
 class AdjustableOnOffFragment : BaseFragment() {
 
-    private val weather = WeatherModel()
+    private val weather = Weather()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,7 +37,8 @@ class AdjustableOnOffFragment : BaseFragment() {
         btn_set.setOnClickListener({
             weather.temperature = et_furnace_when.text.toString().toDouble()
             weather.humidity = et_airing_when.text.toString().toDouble()
-            val setWeather = weatherService.setTemperatureAndAiring(weather)
+
+            val setWeather = weatherService.setTemperatureAndAiring(WeatherMapper.getWeatherModel(weather))
             setWeather.enqueue(getCallback())
         })
 
@@ -52,8 +54,7 @@ class AdjustableOnOffFragment : BaseFragment() {
             }
 
             override fun onFailure(call: Call<WeatherModel>, t: Throwable) {
-                Log.d("WeatherModel Response: ", t.message)
-                Toast.makeText(context, "WeatherModel Response: " + t.message, Toast.LENGTH_LONG).show()
+                Log.d("Weather Response: ", t.message)
             }
         }
     }

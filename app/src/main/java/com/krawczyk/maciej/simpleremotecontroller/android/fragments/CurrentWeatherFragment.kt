@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_current_weather.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CurrentWeatherFragment : BaseFragment() {
 
@@ -49,6 +51,11 @@ class CurrentWeatherFragment : BaseFragment() {
                     val weather = Weather()
                     weather.temperature = response.body()!!.temperature
                     weather.humidity = response.body()!!.humidity
+
+                    val current = Calendar.getInstance()
+                    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
+                    weather.date = simpleDateFormat.format(current.time)
 
                     saveWeather(weather)
 

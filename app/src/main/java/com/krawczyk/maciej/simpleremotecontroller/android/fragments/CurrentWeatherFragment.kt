@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.krawczyk.maciej.simpleremotecontroller.R
-import com.krawczyk.maciej.simpleremotecontroller.android.activities.MainActivity
 import com.krawczyk.maciej.simpleremotecontroller.data.model.Weather
 import com.krawczyk.maciej.simpleremotecontroller.data.model.WeatherModel
 import kotlinx.android.synthetic.main.fragment_current_weather.*
@@ -31,17 +30,8 @@ class CurrentWeatherFragment : BaseFragment() {
     }
 
     private fun setupViews() {
-
         val weatherService = weatherService.weather
         weatherService.enqueue(getCallback())
-
-        this.btn_immediately_on_off.setOnClickListener {
-            (activity as MainActivity).loadFragment(ImmediatelyOnOffFragment.newInstance())
-        }
-
-        this.btn_adjustable_on_off.setOnClickListener {
-            (activity as MainActivity).loadFragment(AdjustableOnOffFragment.newInstance())
-        }
     }
 
     private fun getCallback(): Callback<WeatherModel> {

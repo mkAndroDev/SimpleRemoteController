@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group>
+        <item
+            android:id="@+id/nav_actual_weather"
+            android:icon="@drawable/ic_current_weather"
+            android:title="@string/actual_weather" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history"
+            android:title="@string/history_weather" />
+        <item
+            android:id="@+id/nav_instant_switch"
+            android:icon="@drawable/ic_switch"
+            android:title="@string/switch_instant" />
+        <item
+            android:id="@+id/nav_adjustable_switch"
+            android:icon="@drawable/ic_set_weather"
+            android:title="@string/switch_adjustable" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings_title" />
+    </group>
+
+</menu>

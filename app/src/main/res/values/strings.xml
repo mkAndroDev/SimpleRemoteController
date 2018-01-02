@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Simple remote controller</string>
+    <string name="developer_email">mkandrodev@gmail.com</string>
 
     <string name="current_temperature_label">Aktualna temperatura:</string>
     <string name="current_humidity_label">Aktualna wilgotność:</string>
 
+    <string name="actual_weather">Aktualne warunki</string>
+    <string name="history_weather">Historyczne warunki</string>
     <string name="switch_instant">Włącznik natychmiastowy</string>
     <string name="switch_adjustable">Włącznik nastawny</string>
 
@@ -16,9 +19,13 @@
 
     <string name="celsius_degree">\u2103</string>
 
-    <string name="settings_title">Settings</string>
+    <string name="settings_title">Ustawienia</string>
 
     <string name="set_url_label">Podaj URL:</string>
     <string name="set_url_button_label">Zapisz URL</string>
+
+    <string name="historical_date">Data</string>
+    <string name="historical_temperature">Temperatura</string>
+    <string name="historical_humidity">Wilgotność</string>
 
 </resources>
